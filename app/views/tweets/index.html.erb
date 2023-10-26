@@ -1,0 +1,10 @@
+<h1>tweet一覧</h1>
+<%= link_to '新規ツイート作成', new_tweet_path %>
+<ul>
+<% @tweets.each do |tweet| %>
+  <li>
+    <%= tweet.message %>
+    <%= button_to '削除', tweet_path(tweet), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  </li>
+<% end %>
+</ul>
