@@ -8,11 +8,12 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(uid: session[:uid])
+    @user = User.find_by(uid: session[:login_uid])
     @tweet = Tweet.new(message: params[:tweet][:message])
     if @tweet.save
       redirect_to root_path
     else
+      puts @tweet.errors.full_messages
       render :new
     end
   end
