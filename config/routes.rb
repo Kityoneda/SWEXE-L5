@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'top/main'
+  post 'top/login'
+  get 'top/logout'
+  # get 'tops/main'
   # get 'tweets/index'
   # get 'tweets/new'
   # get 'tweets/create'
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   # get 'users/create'
   # get 'users/destroy'
  resources :tweets
+ resources :likes
  resources :users, only: [:index, :new, :create, :destroy]
  root 'users#index'
   

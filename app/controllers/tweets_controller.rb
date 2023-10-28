@@ -8,9 +8,10 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @user = User.find_by(uid: session[:uid])
+    @tweet = Tweet.new(message: params[:tweet][:message])
     if @tweet.save
-      redirect_to tweets_path
+      redirect_to root_path
     else
       render :new
     end
@@ -20,11 +21,5 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to tweets_path
-  end
-
-  private
-
-  def tweet_params
-    params.require(:tweet).permit(:message, :user_id)
   end
 end
